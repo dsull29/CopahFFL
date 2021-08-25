@@ -9,7 +9,7 @@ const Totals = () => {
     // const [columns, setColumns] = useState([])
     // const [year, setYear] = useState(2020);
 
-    const url = "https://script.google.com/macros/s/AKfycbxgs-DrXBIjhgVZeOevCOHtrzvRRRFAVyuaFly8to7Lw4uYut8IrjqWZ4UG3yX9N3bQbA/exec";
+    const url = "https://script.google.com/macros/s/AKfycbxqxkKKl1FzuedrRS_BfGQQMu57zb7iEX4dMwLZFaXEx6OGqWVw_UfsDoQ8FlZyQRYAbg/exec";
 
     const { data, isPending, error } = useFetch(url);
 
@@ -45,17 +45,17 @@ const Totals = () => {
                     array.push({
                         owner: rec[0],
                         seasons: rec[1],
-                        wins: rec[2],
-                        losses: rec[3],
-                        ties: rec[4],
-                        pointsfor: rec[5].toFixed(2),
-                        pointsagainst: rec[6].toFixed(2),
-                        moves: rec[7],
-                        playoffs: rec[8],
-                        runnerup: rec[9],
-                        champion: rec[10],
-                        winpct: rec[11].toFixed(3),
-                        avgfinish: rec[12].toFixed(2),
+                        w: rec[2],
+                        l: rec[3],
+                        t: rec[4],
+                        pct: rec[5],
+                        pf: rec[6].toFixed(2),
+                        pa: rec[7].toFixed(2),
+                        diff: rec[8].toFixed(2),
+                        moves: rec[9],
+                        playoffs: rec[10],
+                        copahbowl: rec[11],
+                        championships: rec[12]
                     })
                 }
                 return array
@@ -66,7 +66,7 @@ const Totals = () => {
 
     return (
         <div className="content">
-            <h2>COPAH FFL Totals</h2>
+            <h2>All Time Standings</h2>
             {error && <div>{error}</div>}
             {isPending && <div>Loading...</div>}
             {data && <div>

@@ -10,7 +10,7 @@ const Home = () => {
     // const [columns, setColumns] = useState([])
     const [year, setYear] = useState(2020);
 
-    const url = "https://script.google.com/macros/s/AKfycbwhqOY0secls5WtwntQp-0-UCcXZO9Dp_D0_6Vs6_O_IGCB9e2PyfVhlRif4X2ui52ChA/exec";
+    const url = "https://script.google.com/macros/s/AKfycbxTAM8yFur_0_GkZarQ71ow_pDUCOdAKgg1MT3HdpDmi_JxfH7dIvBtjPTFVR5U-emMpQ/exec";
 
     const { data, isPending, error } = useFetch(url);
 
@@ -18,8 +18,8 @@ const Home = () => {
         () => {
             if (data) {
                 var array = [];
-                var tempColumns = ["Rank", "Owner", "Name", "Wins", "Losses", "Ties", "Points For", "Points Against", "Moves", "Playoffs", "RunnerUp", "Champion"];
-                //var tempColumns = data.columns
+                // var tempColumns = ["Rank", "Owner", "Name", "Wins", "Losses", "Ties", "Points For", "Points Against", "Moves", "Playoffs", "RunnerUp", "Champion"];
+                var tempColumns = data.columns
                 for (let i = 0; i < tempColumns.length; i++) {
                     var field = tempColumns[i]
                     var fieldLow = field.toString()
@@ -41,23 +41,21 @@ const Home = () => {
                 var array = [];
 
                 // const { year, rec } = data.seasons[0]
+                console.log("seasons",data)
                 for (let i = 0; i < data[year].length; i++) {
                     var rec = data[year][i]
                     array.push({
-                        rank: rec[0],
+                        owner: rec[0],
                         name: rec[1],
-                        wins: rec[2],
-                        losses: rec[3],
-                        ties: rec[4],
-                        pointsfor: rec[5],
-                        pointsagainst: rec[6],
-                        moves: rec[7],
-                        playoffs: rec[8],
-                        runnerup: rec[9],
-                        champion: rec[10],
-                        owner: rec[11]
-
-
+                        w: rec[2],
+                        l: rec[3],
+                        t: rec[4],
+                        pct: rec[5],
+                        pf: rec[6],
+                        pa: rec[7],
+                        diff: rec[8].toFixed(2),
+                        moves: rec[9],
+                        finish: rec[10],
                     })
                 }
                 return array
@@ -76,7 +74,7 @@ const Home = () => {
 
     return (
         <div className="content">
-            <h2>COPAH FFL Season History</h2>
+            <h2>Season Standings</h2>
             {error && <div>{error}</div>}
             {isPending && <div>Loading...</div>}
             {data && <div>
@@ -91,6 +89,7 @@ const Home = () => {
                     </form>
                 </div>
                 <SortingTable columns={columns} data={records} />
+                <div align="left"><pre>C - Champion    R - Runner Up    P - Playoffs</pre></div>
             </div>}
         </div>
     );

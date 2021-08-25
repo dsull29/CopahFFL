@@ -55,7 +55,7 @@ export default function TotalsTable({columns,data}) {
 
 function isChampion(row) {
 
-     if (row.cells[10].value) {
+     if (row.cells[12].value) {
         return styles.champion
      }
 }
@@ -63,7 +63,7 @@ function isChampion(row) {
 
 function isRunnerUp(row) {
 
-    if (row.cells[9].value) {
+    if (row.cells[11].value) {
        return styles.runnerup
     }
 }

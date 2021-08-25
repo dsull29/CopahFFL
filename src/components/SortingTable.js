@@ -55,7 +55,7 @@ export default function SortedTable({ columns, data }) {
 
 function isChampion(row) {
 
-     if (row.cells[11].value) {
+     if (row.cells[10].value==="C") {
         return styles.champion
      }
 }
@@ -63,7 +63,7 @@ function isChampion(row) {
 
 function isRunnerUp(row) {
 
-    if (row.cells[10].value) {
+    if (row.cells[10].value==="R") {
        return styles.runnerup
     }
 }
@@ -92,6 +92,6 @@ const styles = {
         backgroundColor: "silver",
     },
     teamName: {
-        width: "40%",
+        width: "30%",
     }
 };
